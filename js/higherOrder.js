@@ -30,3 +30,13 @@ const calculateDiameter = function(radius){
     return output;
 };
 console.log(calculateDiameter(radius));
+
+
+
+const num = [0, 1, 2, 3, 4, 5];
+function add(arr){
+    for(let j=0; j<arr.length; j++){
+        console.log(arr[j] + 1);
+    }
+}
+add(num);
