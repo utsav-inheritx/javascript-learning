@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Form</title>
+    <style>
+        body{
+            margin-top: 5%;
+            background-color: aliceblue;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="regForm">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="firstName">
+        </div>
+        <div class="form-group">
+            <label for="middleName">Middle Name:</label>
+            <input type="text" class="form-control" id="middleName" placeholder="Enter Middle Name" name="middleName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" class="form-control" id="mobile" placeholder="Enter Mobile Number" name="mobile">
+        </div>
+        <div class="form-group">
+            <label for="userName">Username:</label>
+            <input type="text" class="form-control" id="userName" placeholder="Enter Username" name="userName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('regForm').addEventListener('submit', function(event){
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const middleName = document.getElementById('middleName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const userName = document.getElementById('userName').value;
+            const password = document.getElementById('password').value;
+
+            const formData = {
+                firstName: firstName,
+                middleName: middleName,
+                lastName: lastName,
+                email: email,
+                mobile: mobile,
+                userName: userName,
+                password: password
+            };
+            saveFormData(formData);
+        });
+
+        function saveFormData(formData){
+            const storedFormData = JSON.parse(localStorage.getItem('formData')) || [];
+            
+            storedFormData.push(formData);
+            localStorage.setItem('formData', JSON.stringify(storedFormData));
+            
+            alert('Data stored successfully');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            padding: 50px;
+        }
+        .action-icons {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form-horizontal" id="taskForm" name="taskForm">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="firstName">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" 
+                    name="firstName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" 
+                    name="lastName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="mobile">Mobile:</label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="mobile" placeholder="Enter mobile number" 
+                    name="mobile" pattern="[0-9]{10}" title="Mobile number should be 10 digits" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="dob">Date of Birth:</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="dob" name="dob" max="<?php echo date('Y-m-d'); ?>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default" onclick="addRow()">Submit</button>
+                    <button type="reset" class="btn btn-reset">Reset</button>
+                </div>
+            </div>
+        </form>
+        
+        <table id="dataTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile</th>
+                    <th>Date of Birth</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addRow() {
+            var firstName = document.getElementById('firstName').value.trim();
+            var lastName = document.getElementById('lastName').value.trim();
+            var mobile = document.getElementById('mobile').value.trim();
+            var dob = document.getElementById('dob').value;
+            var email = document.getElementById('email').value.trim();
+
+            if (!firstName || !lastName || !mobile || !dob || !email) {
+                alert('All fields are required.');
+                return;
+            }
+
+            var mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            var today = new Date().toISOString().split('T')[0];
+            if (dob >= today) {
+                alert('DOB cannot be in the future.');
+                return;
+            }
+
+            var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+
+            cell1.textContent = firstName;
+            cell2.textContent = lastName;
+            cell3.textContent = mobile;
+            cell4.textContent = dob;
+            cell5.textContent = email;
+            cell6.innerHTML = '<i class="bi bi-pencil-square action-icons" onclick="editRow(this)"></i> ' +
+                              '<i class="bi bi-trash action-icons" onclick="deleteRow(this)"></i>';
+
+            // Reset form fields
+            document.getElementById('taskForm').reset();
+        }
+
+        function deleteRow(element) {
+            if (confirm("Are you sure you want to delete?")) {
+                var row = element.closest('tr');
+                row.parentNode.removeChild(row);
+            }
+        }
+
+        function editRow(element) {
+            var row = element.closest('tr');
+            var cells = row.cells;
+
+            document.getElementById('firstName').value = cells[0].textContent;
+            document.getElementById('lastName').value = cells[1].textContent;
+            document.getElementById('mobile').value = cells[2].textContent;
+            document.getElementById('dob').value = cells[3].textContent;
+            document.getElementById('email').value = cells[4].textContent;
+
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>

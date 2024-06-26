@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <title>Task</title>
+    <style>
+        body {
+            padding: 50px;
+        }
+        .action-icons {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form-horizontal" id="taskForm" name="taskForm">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="firstName">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" 
+                    name="firstName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" 
+                    name="lastName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="mobile">Mobile:</label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="dob">Date of Birth:</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="dob" name="dob" max="<?php echo date('Y-m-d'); ?>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="reset" class="btn btn-reset">Reset</button>
+                </div>
+            </div>
+        </form>
+        
+        <table id="dataTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile</th>
+                    <th>Date of Birth</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var table = $('#dataTable').DataTable();
+
+            document.getElementById('taskForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var firstName = document.getElementById('firstName').value.trim();
+                var lastName = document.getElementById('lastName').value.trim();
+                var mobile = document.getElementById('mobile').value.trim();
+                var dob = document.getElementById('dob').value;
+                var email = document.getElementById('email').value.trim();
+
+                if (!firstName || !lastName || !mobile || !dob || !email) {
+                    alert('All fields are required.');
+                    return;
+                }
+
+                var mobilePattern = /^[0-9]{10}$/;
+                if (!mobilePattern.test(mobile)) {
+                    alert('Please enter a valid 10-digit mobile number.');
+                    return;
+                }
+
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                var today = new Date().toISOString().split('T')[0];
+                if (dob >= today) {
+                    alert('DOB cannot be in the future.');
+                    return;
+                }
+
+                table.row.add([
+                    firstName,
+                    lastName,
+                    mobile,
+                    dob,
+                    email,
+                    '<i class="bi bi-pencil-square action-icons" onclick="editRow(this)"></i> ' +
+                    '<i class="bi bi-trash action-icons" onclick="deleteRow(this)"></i>'
+                ]).draw(false);
+
+                document.getElementById('taskForm').reset();
+            });
+        });
+
+        function deleteRow(element) {
+            if (confirm("Are you sure you want to delete?")) {
+                var table = $('#dataTable').DataTable();
+                table.row(element.closest('tr')).remove().draw(false);
+            }
+        }
+
+        function editRow(element) {
+            var table = $('#dataTable').DataTable();
+            var rowData = table.row(element.closest('tr')).data();
+
+            document.getElementById('firstName').value = rowData[0];
+            document.getElementById('lastName').value = rowData[1];
+            document.getElementById('mobile').value = rowData[2];
+            document.getElementById('dob').value = rowData[3];
+            document.getElementById('email').value = rowData[4];
+
+            table.row(element.closest('tr')).remove().draw(false);
+        }
+    </script>
+</body>
+</html>
