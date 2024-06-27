@@ -25,33 +25,31 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="firstName">First Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" 
-                    name="firstName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName" pattern="[A-Za-z]+" title="Name should be in alphabets only">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="lastName">Last Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" 
-                    name="lastName" pattern="[A-Za-z]+" title="Name should be in alphabets only" required>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName" pattern="[A-Za-z]+" title="Name should be in alphabets only">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="mobile">Mobile:</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile" required>
+                    <input type="tel" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="dob">Date of Birth:</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" id="dob" name="dob" max="<?php echo date('Y-m-d'); ?>" required>
+                    <input type="date" class="form-control" id="dob" name="dob" max="<?php echo date('Y-m-d'); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Email:</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
             </div>
             <div class="form-group">        
@@ -91,26 +89,41 @@
                 var dob = document.getElementById('dob').value;
                 var email = document.getElementById('email').value.trim();
 
-                if (!firstName || !lastName || !mobile || !dob || !email) {
-                    alert('All fields are required.');
+                if (!firstName) {
+                    alert('Please enter the first name.');
+                    return;
+                }
+
+                if (!lastName) {
+                    alert('Please enter the last name.');
                     return;
                 }
 
                 var mobilePattern = /^[0-9]{10}$/;
-                if (!mobilePattern.test(mobile)) {
+                if (!mobile) {
+                    alert('Please enter the mobile number.');
+                    return;
+                } else if (!mobilePattern.test(mobile)) {
                     alert('Please enter a valid 10-digit mobile number.');
                     return;
                 }
 
-                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(email)) {
-                    alert('Please enter a valid email address.');
+                if (!dob) {
+                    alert('Please enter the date of birth.');
                     return;
                 }
-
                 var today = new Date().toISOString().split('T')[0];
                 if (dob >= today) {
                     alert('DOB cannot be in the future.');
+                    return;
+                }
+
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email) {
+                    alert('Please enter the email address.');
+                    return;
+                } else if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
                     return;
                 }
 
