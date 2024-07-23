@@ -25,7 +25,7 @@ book.unshift("Gujarati");
 console.log(book);
 
 book.splice(1, 1);
-console.log(book); 
+console.log(book);
 
 // let book5 = new Array("Maths", "Physics", "Biology", "Economics");
 // console.log(book5);

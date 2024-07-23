@@ -20,12 +20,12 @@ console.log(f);
 
 
 // Array
-let g = ["A","B","C"];
+let g = ["A", "B", "C"];
 console.log(g);
 
 
 // Object
-let h = {name:"ABC", age:25};
+let h = { name: "ABC", age: 25 };
 console.log(h);
 
 

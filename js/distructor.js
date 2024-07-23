@@ -1,4 +1,4 @@
-function calculate(a, b){
+function calculate(a, b) {
     let add = a + b;
     let sub = a - b;
     let mul = a * b;

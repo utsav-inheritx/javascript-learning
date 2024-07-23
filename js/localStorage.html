@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Storage</title>
 </head>
+
 <body>
     <button onclick="clickCounter()">Click me</button>
 
     <script>
         clickCounter();
 
-        function clickCounter(){
-            if(localStorage.clickCount){
-                localStorage.clickCount = 
-                Number(localStorage.clickCount)+1;
-            } else{
+        function clickCounter() {
+            if (localStorage.clickCount) {
+                localStorage.clickCount = Number(localStorage.clickCount) + 1;
+            } else {
                 localStorage.clickCount = 1;
             }
             console.log(localStorage.clickCount);
         }
     </script>
 </body>
+
 </html>

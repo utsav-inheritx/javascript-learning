@@ -20,8 +20,8 @@
 
 let response = confirm('Are you sure u wanna delete this?');
 
-if(response){
+if (response) {
     document.write("Deleted");
-} else{
+} else {
     document.write("Not Deleted");
 }

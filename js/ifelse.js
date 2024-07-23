@@ -2,11 +2,11 @@
 let age = 18;
 let hasVoterCard = "No";
 
-if(age>=18 && hasVoterCard == "Yes"){
-   console.log("You are eligible for Voter Id") 
-} else if(age>=18 && hasVoterCard != "Yes"){
+if (age >= 18 && hasVoterCard == "Yes") {
+    console.log("You are eligible for Voter Id")
+} else if (age >= 18 && hasVoterCard != "Yes") {
     console.log("Get ur Voter Id")
-} else{
+} else {
     console.log("Your are not eligible for Voter Id");
 }
 
@@ -15,14 +15,14 @@ if(age>=18 && hasVoterCard == "Yes"){
 let age1 = 18;
 let hasVoterId = "No";
 
-if(age1>=18){
-    if(hasVoterId == "Yes"){
+if (age1 >= 18) {
+    if (hasVoterId == "Yes") {
         console.log("Go for Vote")
-    } else{
+    } else {
         console.log("Create Voter Id")
     }
     console.log("You can Vote");
-} else{
+} else {
     console.log("You can't Vote");
 }
 
@@ -52,17 +52,17 @@ let isLoggedin = 0; // if o logout || if 1 login
 let input;
 input = "";
 
-if(input === 1){
+if (input === 1) {
     document.write("Continue");
-} else if(input === "y"){
+} else if (input === "y") {
     document.write("Continue");
-} else if(input === "yes"){
+} else if (input === "yes") {
     document.write("Continue");
-} else if(input === 0){
+} else if (input === 0) {
     document.write("End");
-} else if(input === "n"){
+} else if (input === "n") {
     document.write("End");
-} else if(input === "no"){
+} else if (input === "no") {
     document.write("End");
 } else {
     document.write("Wrong input");

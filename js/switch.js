@@ -3,7 +3,7 @@
 let input;
 input = 1;
 
-switch(input){
+switch (input) {
     case 1: //if (input === 1)
         document.write("Continue...");
         break;

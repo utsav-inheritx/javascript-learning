@@ -4,7 +4,7 @@ let person = {
     age: 25,
     isEmployed: true,
 
-    greet: function(){
+    greet: function () {
         console.log("Hello, " + this.firstName);
     }
 };

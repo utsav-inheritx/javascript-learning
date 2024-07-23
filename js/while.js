@@ -1,6 +1,6 @@
 let counter = 0;
 
-while(counter <= 5){
+while (counter <= 5) {
     document.write("Inheritx Solution <br>");
     // counter = counter + 1; 
     counter++;

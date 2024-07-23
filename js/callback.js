@@ -1,6 +1,6 @@
-function attachEventListeners(){
+function attachEventListeners() {
     let count = 0;
-    document.getElementById("clickMe").addEventListener("click", function xyz(){
+    document.getElementById("clickMe").addEventListener("click", function xyz() {
         console.log("Button Clicked", ++count);
     });
 }

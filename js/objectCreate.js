@@ -1,5 +1,5 @@
 let personProto = {
-    greet: function(){
+    greet: function () {
         console.log("Hello, " + this.firstName);
     }
 };

@@ -1,9 +1,9 @@
-function Person(firstName, lastName, age, isEmployed){
-    this.firstName = firstName; 
+function Person(firstName, lastName, age, isEmployed) {
+    this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
     this.isEmployed = isEmployed;
-    this.greet = function(){
+    this.greet = function () {
         console.log("Hello, " + this.firstName + " " + this.lastName);
     };
 }

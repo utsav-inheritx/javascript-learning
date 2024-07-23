@@ -13,7 +13,7 @@ console.log(z);
 // "55" is string
 let a = 50;
 let b = "5"; // 5 = 55 or "5" = 505
-console.log(a+b);
+console.log(a + b);
 
 
 let d = 55;

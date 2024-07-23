@@ -19,26 +19,26 @@ console.log(person);
 
 
 // Properties
-for(let key in person){
+for (let key in person) {
     console.log(key);
 }
 
-for(let key in person){
+for (let key in person) {
     console.log(key + ": " + person[key]);
 }
 
 
 // Methods
-person.sayHello = function(){
+person.sayHello = function () {
     console.log("Hello !");
 }
 person.sayHello();
-      
 
-function greet(){
+
+function greet() {
     console.log("Inside Array");
 }
 person.sayHello1 = greet;
-person.sayHello1();     
+person.sayHello1();
 
 

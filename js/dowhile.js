@@ -1,7 +1,7 @@
 let counter = 5;
 
-do{
+do {
     document.write("Inheritx Solution <br>");
     counter++;
-} 
-while(counter<=10);
+}
+while (counter <= 10);

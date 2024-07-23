@@ -4,8 +4,8 @@
 
 
 
-for (let i=1; i<=10; i++){
-    if(i == 5){
+for (let i = 1; i <= 10; i++) {
+    if (i == 5) {
         break;
     }
     document.write(i);
@@ -14,8 +14,8 @@ for (let i=1; i<=10; i++){
 
 
 
-for (let i=1; i<=10; i++){
-    if(i == 5){
+for (let i = 1; i <= 10; i++) {
+    if (i == 5) {
         continue;
     }
     document.write(i);
@@ -24,14 +24,14 @@ for (let i=1; i<=10; i++){
 
 
 
-for(let counter = 1; counter <= 10; counter++){
+for (let counter = 1; counter <= 10; counter++) {
 
     document.write(counter);
     document.write("<br>");
 
-    for(let counter2 = 1; counter2 < 2; counter2++){
+    for (let counter2 = 1; counter2 < 2; counter2++) {
 
-        if(counter == 3){
+        if (counter == 3) {
             break;          // we wanna break the inner content
         }
 

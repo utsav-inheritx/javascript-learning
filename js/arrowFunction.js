@@ -4,7 +4,7 @@ function sum(a, b) {
 }
 
 
-  
+
 // Arrow function
 const sum1 = (a, b) => a + b;
-console.log(sum1(5,10));
+console.log(sum1(5, 10));

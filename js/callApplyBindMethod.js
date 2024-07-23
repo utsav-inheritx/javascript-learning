@@ -3,7 +3,7 @@ let namet = {
     lastName: "Sathvara",
 }
 
-let printFUllName = function(homeTown){
+let printFUllName = function (homeTown) {
     console.log(this.firstName + " " + this.lastName + " from " + homeTown);
 }
 
